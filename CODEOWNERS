@@ -1,0 +1,39 @@
+# Code Owners
+
+# This file defines who is responsible for reviewing code changes
+# in different parts of the repository.
+
+# Global owners (default for everything)
+* @edsonmazivila
+
+# Core application code
+/cmd/ @edsonmazivila
+/internal/ @edsonmazivila
+
+# Domain layer (requires careful review)
+/internal/domain/ @edsonmazivila
+
+# Infrastructure and CI/CD
+/.github/ @edsonmazivila
+/scripts/ @edsonmazivila
+.golangci.yml @edsonmazivila
+Makefile @edsonmazivila
+
+# Tests (require thorough review)
+/tests/ @edsonmazivila
+
+# Documentation (can be reviewed by anyone, but owner has final say)
+*.md @edsonmazivila
+/docs/ @edsonmazivila
+
+# Configuration files
+.env.example @edsonmazivila
+config.yaml.example @edsonmazivila
+.gitignore @edsonmazivila
+
+# Dependencies
+go.mod @edsonmazivila
+go.sum @edsonmazivila
+
+# Database migrations (critical, requires approval)
+/migrations/ @edsonmazivila
