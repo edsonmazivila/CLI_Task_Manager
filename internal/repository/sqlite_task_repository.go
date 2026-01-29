@@ -1,3 +1,6 @@
+// Package repository provides data access implementations for the task manager.
+// This layer handles all database interactions and SQL query execution,
+// following the repository pattern to abstract persistence details from business logic.
 package repository
 
 import (
@@ -10,7 +13,9 @@ import (
 	"github.com/edson-mazvila/task-manager/internal/domain"
 )
 
-// SQLiteTaskRepository implements TaskRepository for SQLite
+// SQLiteTaskRepository implements TaskRepository interface for SQLite database.
+// It provides CRUD operations with transaction support and proper error handling.
+// All SQL queries use parameterized statements to prevent SQL injection.
 type SQLiteTaskRepository struct {
 	db     *sql.DB
 	logger *slog.Logger
@@ -24,7 +29,9 @@ func NewSQLiteTaskRepository(db *sql.DB, logger *slog.Logger) *SQLiteTaskReposit
 	}
 }
 
-// Create creates a new task
+// Create inserts a new task into the database.
+// Uses parameterized queries to prevent SQL injection and ensure data safety.
+// All timestamps are stored in UTC format for consistency across time zones.
 func (r *SQLiteTaskRepository) Create(ctx context.Context, task *domain.Task) error {
 	query := `
 		INSERT INTO tasks (id, title, description, status, priority, created_at, updated_at, completed_at)

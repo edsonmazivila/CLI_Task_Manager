@@ -24,7 +24,9 @@ func NewTaskService(repo domain.TaskRepository, logger *slog.Logger) *TaskServic
 	}
 }
 
-// CreateTask creates a new task
+// CreateTask creates a new task with validation and persistence.
+// It generates a UUID, sets default status to Pending, and validates all fields
+// before persisting to the repository. Returns the created task or an error.
 func (s *TaskService) CreateTask(ctx context.Context, title, description string, priority domain.TaskPriority) (*domain.Task, error) {
 	task := &domain.Task{
 		ID:          uuid.New().String(),
@@ -50,7 +52,8 @@ func (s *TaskService) CreateTask(ctx context.Context, title, description string,
 	return task, nil
 }
 
-// GetTask retrieves a task by ID
+// GetTask retrieves a task by ID from the repository.
+// Returns ErrInvalidTaskID if the ID is empty, or ErrTaskNotFound if no task exists.
 func (s *TaskService) GetTask(ctx context.Context, id string) (*domain.Task, error) {
 	if id == "" {
 		return nil, domain.ErrInvalidTaskID
@@ -65,7 +68,9 @@ func (s *TaskService) GetTask(ctx context.Context, id string) (*domain.Task, err
 	return task, nil
 }
 
-// ListTasks retrieves all tasks based on filter criteria
+// ListTasks retrieves all tasks based on filter criteria.
+// The filter supports status and priority filtering. Pass empty filter for all tasks.
+// Results are ordered by creation date (newest first).
 func (s *TaskService) ListTasks(ctx context.Context, filter domain.TaskFilter) ([]*domain.Task, error) {
 	tasks, err := s.repo.List(ctx, filter)
 	if err != nil {
@@ -77,7 +82,9 @@ func (s *TaskService) ListTasks(ctx context.Context, filter domain.TaskFilter) (
 	return tasks, nil
 }
 
-// UpdateTask updates an existing task
+// UpdateTask updates an existing task with partial field updates.
+// Only non-empty fields are updated, allowing partial updates without overwriting existing data.
+// The task is validated after updates and the UpdatedAt timestamp is refreshed.
 func (s *TaskService) UpdateTask(ctx context.Context, id, title, description string, priority domain.TaskPriority) (*domain.Task, error) {
 	if id == "" {
 		return nil, domain.ErrInvalidTaskID
