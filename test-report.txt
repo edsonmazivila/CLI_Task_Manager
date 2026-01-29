@@ -1,0 +1,80 @@
+=== RUN   TestCLIConfiguration
+=== RUN   TestCLIConfiguration/valid_sqlite_config
+=== RUN   TestCLIConfiguration/invalid_db_type
+=== RUN   TestCLIConfiguration/missing_required_postgres_fields
+=== RUN   TestCLIConfiguration/default_values
+--- PASS: TestCLIConfiguration (0.00s)
+    --- PASS: TestCLIConfiguration/valid_sqlite_config (0.00s)
+    --- PASS: TestCLIConfiguration/invalid_db_type (0.00s)
+    --- PASS: TestCLIConfiguration/missing_required_postgres_fields (0.00s)
+    --- PASS: TestCLIConfiguration/default_values (0.00s)
+=== RUN   TestConfigValidation
+=== RUN   TestConfigValidation/sqlite_creates_default_path
+=== RUN   TestConfigValidation/postgres_requires_credentials
+=== RUN   TestConfigValidation/invalid_log_level
+=== RUN   TestConfigValidation/invalid_log_format
+--- PASS: TestConfigValidation (0.00s)
+    --- PASS: TestConfigValidation/sqlite_creates_default_path (0.00s)
+    --- PASS: TestConfigValidation/postgres_requires_credentials (0.00s)
+    --- PASS: TestConfigValidation/invalid_log_level (0.00s)
+    --- PASS: TestConfigValidation/invalid_log_format (0.00s)
+=== RUN   TestConfigFileLoading
+--- PASS: TestConfigFileLoading (0.00s)
+=== RUN   TestEnvVarOverride
+--- PASS: TestEnvVarOverride (0.00s)
+=== RUN   TestConfigMissingFile
+--- PASS: TestConfigMissingFile (0.00s)
+=== RUN   TestConfigOptionalFile
+--- PASS: TestConfigOptionalFile (0.00s)
+=== RUN   TestTaskLifecycle
+time=2026-01-29T15:51:15.501+02:00 level=ERROR msg="Failed to get task" error="task not found" task_id=82eed0af-c6dd-4949-8b10-eee9da14db7d
+--- PASS: TestTaskLifecycle (0.02s)
+=== RUN   TestTaskFiltering
+=== RUN   TestTaskFiltering/filter_by_status_pending
+=== RUN   TestTaskFiltering/filter_by_status_completed
+=== RUN   TestTaskFiltering/filter_by_priority_high
+=== RUN   TestTaskFiltering/filter_by_date_range
+=== RUN   TestTaskFiltering/combined_filters
+--- PASS: TestTaskFiltering (0.02s)
+    --- PASS: TestTaskFiltering/filter_by_status_pending (0.00s)
+    --- PASS: TestTaskFiltering/filter_by_status_completed (0.00s)
+    --- PASS: TestTaskFiltering/filter_by_priority_high (0.00s)
+    --- PASS: TestTaskFiltering/filter_by_date_range (0.00s)
+    --- PASS: TestTaskFiltering/combined_filters (0.00s)
+=== RUN   TestConcurrentOperations
+--- PASS: TestConcurrentOperations (0.03s)
+=== RUN   TestErrorHandling
+=== RUN   TestErrorHandling/get_nonexistent_task
+time=2026-01-29T15:51:15.563+02:00 level=ERROR msg="Failed to get task" error="task not found" task_id=nonexistent-id
+=== RUN   TestErrorHandling/update_nonexistent_task
+time=2026-01-29T15:51:15.563+02:00 level=ERROR msg="Failed to get task for update" error="task not found" task_id=nonexistent-id
+=== RUN   TestErrorHandling/complete_nonexistent_task
+time=2026-01-29T15:51:15.563+02:00 level=ERROR msg="Failed to get task for completion" error="task not found" task_id=nonexistent-id
+=== RUN   TestErrorHandling/delete_nonexistent_task
+time=2026-01-29T15:51:15.563+02:00 level=ERROR msg="Failed to delete task" error="task not found" task_id=nonexistent-id
+=== RUN   TestErrorHandling/create_task_with_empty_title
+=== RUN   TestErrorHandling/create_task_with_invalid_priority
+=== RUN   TestErrorHandling/invalid_task_id
+--- PASS: TestErrorHandling (0.01s)
+    --- PASS: TestErrorHandling/get_nonexistent_task (0.00s)
+    --- PASS: TestErrorHandling/update_nonexistent_task (0.00s)
+    --- PASS: TestErrorHandling/complete_nonexistent_task (0.00s)
+    --- PASS: TestErrorHandling/delete_nonexistent_task (0.00s)
+    --- PASS: TestErrorHandling/create_task_with_empty_title (0.00s)
+    --- PASS: TestErrorHandling/create_task_with_invalid_priority (0.00s)
+    --- PASS: TestErrorHandling/invalid_task_id (0.00s)
+=== RUN   TestDatabasePersistence
+--- PASS: TestDatabasePersistence (0.01s)
+=== RUN   TestMigrationIdempotency
+--- PASS: TestMigrationIdempotency (0.01s)
+=== RUN   TestTransactionRollback
+--- PASS: TestTransactionRollback (0.01s)
+=== RUN   TestTaskTimestamps
+--- PASS: TestTaskTimestamps (0.02s)
+=== RUN   TestListTasksOrdering
+--- PASS: TestListTasksOrdering (0.04s)
+=== RUN   TestDatabaseIndexes
+--- PASS: TestDatabaseIndexes (0.01s)
+PASS
+coverage: [no statements]
+ok  	github.com/edson-mazvila/task-manager/tests/integration	1.195s	coverage: [no statements]
