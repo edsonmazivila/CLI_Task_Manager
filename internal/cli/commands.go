@@ -1,3 +1,7 @@
+// Package cli provides the command-line interface for the task manager.
+// It uses the Cobra framework to provide a rich CLI experience with subcommands,
+// flags, and formatted output. This is the presentation layer that interacts
+// with users and delegates work to the service layer.
 package cli
 
 import (
@@ -13,7 +17,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// CLI holds the CLI configuration and dependencies
+// CLI holds the CLI configuration and dependencies.
+// It follows dependency injection principles, receiving the service layer
+// and logger through the constructor to maintain loose coupling.
 type CLI struct {
 	service *service.TaskService
 	logger  *slog.Logger
@@ -27,7 +33,9 @@ func NewCLI(service *service.TaskService, logger *slog.Logger) *CLI {
 	}
 }
 
-// RootCmd returns the root command
+// RootCmd returns the root command with all subcommands attached.
+// Subcommands include: add, list, get, update, complete, delete.
+// Each command has its own flags and validation logic.
 func (c *CLI) RootCmd() *cobra.Command {
 	rootCmd := &cobra.Command{
 		Use:   "task",
