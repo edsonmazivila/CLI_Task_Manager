@@ -1,16 +1,23 @@
-# Task Manager Database
-*.db
-*.db-shm
-*.db-wal
-
-# Configuration files with secrets
-.env
-config.yaml
-
-# Build artifacts
-/bin/
-/dist/
+# Binaries
 task
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+*.coverprofile
+coverage.out
+coverage-full.out
+coverage*.out
+
+# Dependency directories
+vendor/
 
 # IDE
 .vscode/
@@ -22,3 +29,21 @@ task
 # OS
 .DS_Store
 Thumbs.db
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+tmp/
+temp/
+test-report.txt
+
+# Build artifacts
+/tmp/
+dist/
